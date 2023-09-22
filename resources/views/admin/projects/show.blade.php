@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('main-content')
+@section('content')
     <div class="row">
         <div class="col">
             <div class="card">
@@ -13,13 +13,12 @@
                             {{ $project->content }}
                         </p>
 
-
                         <div>
 
-                            <a href="{{ route('admin.posts.edit', ['post' => $post->id]) }}" class="btn btn-warning">
+                            <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}" class="btn btn-warning">
                                 Modifica
                             </a>
-                            <form class="d-inline-block" action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}" method="post" onsubmit="return confirm('Sei sicuro di voler eliminare questo post?');">
+                            <form class="d-inline-block" action="{{ route('admin.projects.destroy', ['project' => $project->slug]) }}" method="post" onsubmit="return confirm('Sei sicuro di voler eliminare questo post?');">
                                 @csrf
                                 @method('DELETE')
 
@@ -30,28 +29,6 @@
                         </div>
                     </div>
 
-                    <hr>
-
-                    <p>
-                        {{ $post->content }}
-                    </p>
-
-                    <hr>
-
-                    <div>
-                        <h3>
-                            Tags:
-                        </h3>
-                        <div>
-                            @forelse ($post->tags as $tag)
-                                <span class="badge rounded-pill text-bg-primary">
-                                    {{ $tag->title }}
-                                </span>
-                            @empty
-                                Nessun tag associato a questo post
-                            @endforelse
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
